@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Delete item | To Do List</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <!-- <link rel="stylesheet" href="../static/style.css" /> -->
+  </head>
+  <body>
+    <div class="body">
+      <h1>Delete item</h1>
+      <p>Category: {{ item.category }}</p>
+      <p>Description: {{ item.description }}</p>
+
+      {% if item.image %}
+      <img
+        src="{{ url_for('get_image', filename=item.image) }}"
+        alt="{{ item.image }}"
+      />
+      {% endif %}
+      <p>Status: {{ item.status }}</p>
+      <form
+        action="{{ url_for('delete_item', item_id=item.id) }}"
+        method="post"
+      >
+        <div class="bottom-button-container">
+          <button type="submit">Delete</button>
+        </div>
+      </form>
+      <div class="bottom-button-container">
+        <a href="{{ url_for('index') }}">Back to listing</a>
+      </div>
+    </div>
+  </body>
+</html>

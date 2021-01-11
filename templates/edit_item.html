@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit item | To Do List</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <!-- <link rel="stylesheet" href="../static/style.css" /> -->
+  </head>
+  <body>
+    <div class="body">
+      <h1>Edit item</h1>
+      <form
+        action="{{ url_for('edit_item', item_id=item.id) }}"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <div class="form-section">
+          <label for="category">Category:</label>
+          <select name="category" id="category">
+            {% for key, value in category_dict.items() %} {% if
+            value==item.category %}
+            <option value="{{ key }}" selected>{{ value }}</option>
+            {% else %}
+            <option value="{{ key }}">{{ value }}</option>
+            {% endif %} {% endfor %}
+          </select>
+        </div>
+        <div class="form-section">
+          <label for="description">Description:</label>
+          <textarea name="description" id="description">
+{{ item.description }}</textarea
+          >
+        </div>
+        <div class="form-section">
+          {% if item.image %}
+          <img
+            src="{{ url_for('get_image', filename=item.image) }}"
+            alt="{{ item.image }}"
+          />
+          {% endif %}
+        </div>
+        {% if item.image %}
+        <div class="form-section">
+          <label for="remove-image">Remove current image: </label>
+          <input type="checkbox" id="remove-image" name="remove-image" />
+        </div>
+        <div class="form-section">
+          <label for="image">Change image:</label>
+        </div>
+        {% else %}
+        <div class="form-section">
+          <label for="image">Add an image:</label>
+        </div>
+        {% endif %}
+        <div class="form-section">
+          <input type="file" id="image" name="image" />
+        </div>
+        <div class="form-section">
+          <label for="status">Status:</label>
+          <select name="status" id="status">
+            {% for status in statuses %} {% if status==item.status %}
+            <option value="{{ status }}" selected>{{ status }}</option>
+            {% else %}
+            <option value="{{ status }}">{{ status }}</option>
+            {% endif %} {% endfor %}
+          </select>
+        </div>
+        <div class="bottom-button-container">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+      <div class="bottom-button-container">
+        <a href="{{ url_for('index') }}">Back to listing</a>
+      </div>
+    </div>
+  </body>
+</html>
