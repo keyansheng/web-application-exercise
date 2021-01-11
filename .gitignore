@@ -1,0 +1,7 @@
+# Python
+__pycache__/
+debug.log
+
+# User data
+images/
+todo.db
