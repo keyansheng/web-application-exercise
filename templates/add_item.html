@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add item | To Do List</title>
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='style.css') }}"
+        />
+        <!-- <link rel="stylesheet" href="../static/style.css" /> -->
+    </head>
+    <body>
+        <div class="body">
+            <h1>Add item</h1>
+            <form
+                action="{{ url_for('add_item') }}"
+                method="post"
+                enctype="multipart/form-data"
+            >
+                <div class="form-section">
+                    <label for="category">Category:</label>
+                    <select name="category" id="category">
+                        <option value="" selected disabled hidden
+                            >Choose a category</option
+                        >
+                        {% for key, value in category_dict.items() %}
+                        <option value="{{ key }}">{{ value }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-section">
+                    <label for="description">Description:</label>
+                    <textarea name="description" id="description"></textarea>
+                </div>
+                <div class="form-section">
+                    <label for="image">Add an image:</label>
+                    <input type="file" id="image" name="image" />
+                </div>
+                <div class="bottom-button-container">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+            <div class="bottom-button-container">
+                <a href="{{ url_for('index') }}">Back to listing</a>
+            </div>
+        </div>
+    </body>
+</html>

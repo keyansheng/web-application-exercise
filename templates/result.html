@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ result }} | To Do List</title>
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='style.css') }}"
+        />
+        <!-- <link rel="stylesheet" href="../static/style.css" /> -->
+    </head>
+    <body>
+        <div class="body">
+            <h1>{{ result }}</h1>
+            <p>{{ result_message }}</p>
+            <div class="bottom-button-container">
+                <a href="{{ url_for('index') }}">Back to listing</a>
+            </div>
+        </div>
+    </body>
+</html>
