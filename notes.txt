@@ -1,0 +1,1 @@
+you can use a hidden input to send the item id using POST instead of putting the id in the form action and sending the id using GET

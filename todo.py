@@ -78,6 +78,8 @@ def index():
 
     isempty = not len(items)
 
+    db.close()
+
     return render_template("index.html", isempty=isempty, items=items)
 
 
@@ -107,9 +109,7 @@ def add_item():
         db.close()
 
         return render_template(
-            "result.html",
-            result="Success",
-            result_message="Item added successfully",
+            "result.html", result="Success", result_message="Item added successfully",
         )
     except:
         return render_template(
@@ -127,10 +127,7 @@ def edit_item(item_id):
         item = createItem(todo_row.fetchone(), category_dict)
 
         return render_template(
-            "edit_item.html",
-            category_dict=category_dict,
-            item=item,
-            statuses=statuses,
+            "edit_item.html", category_dict=category_dict, item=item, statuses=statuses,
         )
     try:
         # filename = old filename
@@ -158,9 +155,7 @@ def edit_item(item_id):
         db.close()
 
         return render_template(
-            "result.html",
-            result="Success",
-            result_message="Item edited successfully",
+            "result.html", result="Success", result_message="Item edited successfully",
         )
     except:
         return render_template(
@@ -190,15 +185,11 @@ def delete_item(item_id):
         db.close()
 
         return render_template(
-            "result.html",
-            result="Success",
-            result_message="Item deleted successfully",
+            "result.html", result="Success", result_message="Item deleted successfully",
         )
     except:
         return render_template(
-            "result.html",
-            result="Error",
-            result_message="Failed to delete item",
+            "result.html", result="Error", result_message="Failed to delete item",
         )
 
 
@@ -209,3 +200,4 @@ def get_image(filename):
 
 if __name__ == "__main__":
     app.run()
+    # app.run(host="0.0.0.0")
